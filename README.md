@@ -9,8 +9,13 @@ In Cura Slicer settings choose relative extrusion !
 
 Make sure that You have latest python installed. This program use only native python librarys, no additional modules are requred.
 
-How to use :
+How to use in Linux (terminal) :
 
      $ cd directory
      $ chmod +x ./fuser
+     $ python ./fuser 
+     
+How to use in Windows (cmd) :
+
+     $ cd directory
      $ python ./fuser
