@@ -7,6 +7,8 @@ In Cura Slicer settings choose relative extrusion !
   <img src="https://raw.githubusercontent.com/0xDEADBEEF-ARM/FUSER/main/Fuse.png" alt="Fuser"/>
 </p>
 
+Make sure that You have latest python installed. This program use only native python librarys, no additional modules are requred.
+
 How to use :
 
      $ cd directory
