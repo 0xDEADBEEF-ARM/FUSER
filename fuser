@@ -18,67 +18,39 @@ import os
 # 6 BUTTONS
 # 7 LABELS
 # 8 CHECKBUTTONS
-# 9 TEXT
-# 10 TAG
-# 11 SCROLLBAR
-# 12 ENTRY
-# 13 SLIDER
+# 9 ENTRY
+# 10 DISABLE FUNCTIONS
+
 
 # DISABLED FEATURES
 #-END- UNUSED
 
 
-
-
-
 ##### 1 GLOBAL VARIABLES START #####
-po=1
 
-file1flag=0 #0 flag unused 1 flag used
-file1name=" "
-file1path=" "
-file2flag=0 #0 flag unused 1 flag used
-file2name=" "
-file2path=" "
-file3flag=0 #0 flag unused 1 flag used
-file3name=" "
-file3path=" "
-file4flag=0 #0 flag unused 1 flag used
-file4name=" "
-file4path=" "
-file5flag=0 #0 flag unused 1 flag used
-file5name=" "
-file5path=" "
-file6flag=0 #0 flag unused 1 flag used
-file6name=" "
-file6path=" "
-file7flag=0 #0 flag unused 1 flag used
-file7name=" "
-file7path=" "
+files= {}
+for i in range(1,8):
+	files[f'file{i}flag']=" "
+	files[f'file{i}name']=" "
+	files[f'file{i}path']=" "
+	files[f'file{i}']=" "
 
-file1=" "
-file2=" "
-file3=" "
-file4=" "
-file5=" "
-file6=" "
-file7=" "
+vals= {}
+for i in range(1,11,1):
+	vals[f'val{i}']=0
 
-name=" "
-path=" "
-
-fusedfilepath=" "
+widgets= {}
+for i in range(1,6):
+	widgets[f'ent{i}s']=" "
+	widgets[f'ent{i}e']=" "
 
 ##### 1 GLOBAL VARIABLES END #####
-
-
 
 
 ##### 2 FUNCTIONS START #####
 
 def browsefile():
-	global name
-	global path
+	global name, path
 	root.filename=filedialog.askopenfilename(initialdir="./", title="Select file", filetypes=(("gcode","*.gcode"), ("all files","*.*")))	
 	name=os.path.basename(root.filename)
 	path=root.filename
@@ -88,125 +60,97 @@ def savefile():
 	ff=filedialog.asksaveasfile(initialdir="./", title="Save file", defaultextension=(".gcode"))
 	fusedfilepath=str(ff.name)
 	print(f"filepath : {fusedfilepath}")
-	
-	#dziala
-	#f = open(f'{fusedfilepath}', "a")
-	#f.write("ok")
-	#f.close()
-
-		
-
 
 def Button(**kwargs):
-	global file1flag, file2flag, file3flag, file4flag, file5flag, file6flag, file7flag
-	global file1name, file2name, file3name, file4name, file5name, file6name, file7name
-	global file1path, file2path, file3path, file4path, file5path, file6path, file7path
+
+	global files
 
 	for file in kwargs:
 		fileflag=kwargs['file']
 		match fileflag:
 			case 1:
 				print ("file 1")
-				file1flag=1
+				files['file1flag']=1
 				browsefile()	
-				file1name=name
-				file1path=path
-				lbl1.config(text=f"{file1name}", foreground='green')
+				files['file1name']=name
+				files['file1path']=path
+				lbl1.config(text=f"{files['file1name']}", foreground='green')
 				
 				
 
 			case 2:
 				print ("file 2")
-				file2flag=1
-				ent1s['state']='normal'
-				ent1e['state']='normal'
+				files['file2flag']=1
+				widgets['ent1s']['state']='normal'
+				widgets['ent1e']['state']='normal'
 				browsefile()	
-				file2name=name
-				file2path=path
-				lbl2.config(text=f"{file2name}", foreground='green')
+				files['file2name']=name
+				files['file2path']=path
+				lbl2.config(text=f"{files['file2name']}", foreground='green')
 				
 			case 3:
 				print ("file 3")
-				file3flag=1
-				ent2s['state']='normal'
-				ent2e['state']='normal'
+				files['file3flag']=1
+				widgets['ent2s']['state']='normal'
+				widgets['ent2e']['state']='normal'
 				browsefile()	
-				file3name=name
-				file3path=path
-				lbl3.config(text=f"{file3name}", foreground='green')
+				files['file3name']=name
+				files['file3path']=path
+				lbl3.config(text=f"{files['file3name']}", foreground='green')
 				
 			case 4:
 				print ("file 4")
-				file4flag=1
-				ent3s['state']='normal'
-				ent3e['state']='normal'
+				files['file4flag']=1
+				widgets['ent3s']['state']='normal'
+				widgets['ent3e']['state']='normal'
 				browsefile()	
-				file4name=name
-				file4path=path
-				lbl4.config(text=f"{file4name}", foreground='green')
+				files['file4name']=name
+				files['file4path']=path
+				lbl4.config(text=f"{files['file4name']}", foreground='green')
 				
 			case 5:
 				print ("file 5")
-				file5flag=1
-				ent4s['state']='normal'
-				ent4e['state']='normal'
+				files['file5flag']=1
+				widgets['ent4s']['state']='normal'
+				widgets['ent4e']['state']='normal'
 				browsefile()	
-				file5name=name
-				file5path=path
-				lbl5.config(text=f"{file5name}", foreground='green')
+				files['file5name']=name
+				files['file5path']=path
+				lbl5.config(text=f"{files['file5name']}", foreground='green')
 			case 6:
 				print ("file 6")
-				file6flag=1
-				ent5s['state']='normal'
-				ent5e['state']='normal'
+				files['file6flag']=1
+				widgets['ent5s']['state']='normal'
+				widgets['ent5e']['state']='normal'
 				browsefile()	
-				file6name=name
-				file6path=path
-				lbl6.config(text=f"{file6name}", foreground='green')
+				files['file6name']=name
+				files['file6path']=path
+				lbl6.config(text=f"{files['file6name']}", foreground='green')
 			case 7:
 				print ("file 7")
-				file7flag=1
+				files['file7flag']=1
 				browsefile()	
-				file7name=name
-				file7path=path
-				lbl7.config(text=f"{file7name}", foreground='green')
-
-
-
+				files['file7name']=name
+				files['file7path']=path
+				lbl7.config(text=f"{files['file7name']}", foreground='green')
 
 
 def fuse():
-	global final
-	global po
-	global f, sw
-	global val1, val2, val3, val4, val5, val6, val7, val8, val9, val10
+	global final, po, f, sw, start, end
 	global checkbutton
-	
-	val1=ent1s.get()
-	val2=ent1e.get()
-	val3=ent2s.get()
-	val4=ent2e.get()
-	val5=ent3s.get()
-	val6=ent3e.get()
-	val7=ent4s.get()
-	val8=ent4e.get()
-	val9=ent5s.get()
-	val10=ent5e.get()
-#cura slicer counts layers from 1, but generted gcode starts from 0
 
-	checkbutton=checkbtn.get()
-
-
+	final=1
 	sw=0
-
-	f = open(f'{fusedfilepath}', "a")
 	po=1
+	f = open(f'{fusedfilepath}', "a")
 
-	if file1flag==1: #flag
+#FUSE - START SEQUENCE - START#####
+
+	if files['file1flag']==1: #flag
 	
-		print("fusing file 1 : START SEQUENCE")
+		print(f"fusing file 1 : START SEQUENCE")
 		while  True:
-			line = linecache.getline(f'{file1path}', po)
+			line = linecache.getline(f"{files['file1path']}", po)
 			if not line:
 				break
 			#find
@@ -220,218 +164,69 @@ def fuse():
 	else:
 		print("no file 1 chosen")
 
-	if file2flag==1: #flag
+#FUSE - START SEQUENCE - START#####
+
+#FUSE - MIDDLE - START #####
+
+	for x in range(2,7,1):
+
+		start=vars[f"en{x-1}start"].get()
+		end=vars[f"en{x-1}end"].get()
+		checkbutton=checkbtn.get()
 		if checkbutton==0:
-			val1=int(val1)-1
-			val1=str(val1)
-			val2=int(val2)-1
-			val2=str(val2)
-		print("fusing file 2")
+			start=start-1
+			end=end-1
+
+		if files[f"file{x}flag"]==1: #flag
 		
-		sw=0
-		po=1
+			print(f"fusing file {x}")
+			
+			sw=0
+			po=0
+			lin=-1
 
-		print("fusing file 2 : layers")
-		while  True:
-			line = linecache.getline(f'{file2path}', po)
-			if not line:
-				break
-			#find
-			lin=line.find(f"LAYER:{val1}\n")
-			
-			
-			if(lin>-1):
-				print(f"LAYER{val1} from file2 found, start fusing")
+			print(f"fusing file {x} : layers")
+			while  True:
+				po=po+1
+				line = linecache.getline(f"{files[f'file{x}path']}", po)
+				if not line:
+					break
+				#find
+				lin=line.find(f"LAYER:{start}\n")
 				
-
-				while True:	
-					line = linecache.getline(f'{file2path}', po)
-					if not line:
-						break
-					lin=line.find(f"LAYER:{val2}\n")
-					if(lin>-1):
-						print("found end layer")
-						sw=1
-					f.write(f"{line}")
-					po=po+1
-					lin=line.find(";TIME_ELAPSED:")
-					if(lin>-1 and sw==1):
-						break
-			po=po+1
-		
-
-	else:
-		print("no file 2 chosen")
-	if file3flag==1: #flag
-		if checkbutton==0:
-			val3=int(val3)-1
-			val3=str(val3)
-			val4=int(val4)-1
-			val4=str(val4)
-		print("fusing file 3")
-		sw=0
-		po=1
-
-		print("fusing file 3 : layers")
-		while  True:
-			line = linecache.getline(f'{file3path}', po)
-			if not line:
-				break
-			#find
-			lin=line.find(f"LAYER:{val3}\n")
-			
-			
-			if(lin>-1):
-				print(f"LAYER{val3} from file3 found, start fusing")
 				
+				if(lin>-1):
+					print(f"LAYER{start} from file{x} found, start fusing")				
 
-				while True:	
-					line = linecache.getline(f'{file3path}', po)
-					if not line:
-						break
-					lin=line.find(f"LAYER:{val4}\n")
-					if(lin>-1):
-						print("found end layer")
-						sw=1
-					f.write(f"{line}")
-					po=po+1
-					lin=line.find(";TIME_ELAPSED:")
-					if(lin>-1 and sw==1):
-						break
-			po=po+1
+					while True:	
+						line = linecache.getline(f"{files[f'file{x}path']}", po)
+						if not line:
+							break
+						
+						lin=line.find(f"LAYER:{end}\n")
+						
+						if(lin>-1):
+							print(f"found end RAYER : {end}")
+							sw=1
+						f.write(f"{line}")
+						po=po+1
+						lin=line.find(";TIME_ELAPSED:")
+						if(lin>-1 and sw==1):
+							break
+					 
 
-
-	else:
-		print("no file 3 chosen")
-	if file4flag==1: #flag
-		if checkbutton==0:
-			val5=int(val5)-1
-			val5=str(val5)
-			val6=int(val6)-1
-			val6=str(val6)
-		print("fusing file 4")
-		sw=0
-		po=1
-
-		print("fusing file 4 : layers")
-		while  True:
-			line = linecache.getline(f'{file4path}', po)
-			if not line:
-				break
-			#find
-			lin=line.find(f"LAYER:{val5}\n")
-			
-			
-			if(lin>-1):
-				print(f"LAYER{val5} from file4 found, start fusing")
-				
-
-				while True:	
-					line = linecache.getline(f'{file4path}', po)
-					if not line:
-						break
-					lin=line.find(f"LAYER:{val6}\n")
-					if(lin>-1):
-						print("found end layer")
-						sw=1
-					f.write(f"{line}")
-					po=po+1
-					lin=line.find(";TIME_ELAPSED:")
-					if(lin>-1 and sw==1):
-						break
-			po=po+1
+		else:
+			print(f"no file {x} chosen")
+#FUSE - MIDDLE - END #####
 
 
-	else:
-		print("no file 4 chosen")
-	if file5flag==1: #flag
-		if checkbutton==0:
-			val7=int(val7)-1
-			val7=str(val7)
-			val8=int(val8)-1
-			val8=str(val8)
-		print("fusing file 5")
-		sw=0
-		po=1
+#FUSE- END SEQUENCE - START#####
 
-		print("fusing file 5 : layers")
-		while  True:
-			line = linecache.getline(f'{file5path}', po)
-			if not line:
-				break
-			#find
-			lin=line.find(f"LAYER:{val7}\n")
-			
-			
-			if(lin>-1):
-				print(f"LAYER{val7} from file5 found, start fusing")
-				
-
-				while True:	
-					line = linecache.getline(f'{file5path}', po)
-					if not line:
-						break
-					lin=line.find(f"LAYER:{val8}\n")
-					if(lin>-1):
-						print("found end layer")
-						sw=1
-					f.write(f"{line}")
-					po=po+1
-					lin=line.find(";TIME_ELAPSED:")
-					if(lin>-1 and sw==1):
-						break
-			po=po+1
-
-
-	else:
-		print("no file 5 chosen")
-	if file6flag==1: #flag
-		if checkbutton==0:
-			val9=int(val9)-1
-			val9=str(val9)
-			val10=int(val10)-1
-			val10=str(val10)
-		print("fusing file 6")
-		sw=0
-		po=1
-
-		print("fusing file 6 : layers")
-		while  True:
-			line = linecache.getline(f'{file6path}', po)
-			if not line:
-				break
-			#find
-			lin=line.find(f"LAYER:{val9}\n")
-			
-			
-			if(lin>-1):
-				print(f"LAYER{val9} from file6 found, start fusing")
-				
-
-				while True:	
-					line = linecache.getline(f'{file6path}', po)
-					if not line:
-						break
-					lin=line.find(f"LAYER:{val10}\n")
-					if(lin>-1):
-						print("found end layer")
-						sw=1
-					f.write(f"{line}")
-					po=po+1
-					lin=line.find(";TIME_ELAPSED:")
-					if(lin>-1 and sw==1):
-						break
-			po=po+1
-
-
-	else:
-		print("no file 6 chosen")
-
-	if file7flag==1: #flag
+	if files['file7flag']==1: #flag
 		print("fusing file 7 : END SEQUENCE")
 		po=1
 		while  True:
-			line = linecache.getline(f'{file7path}', po)
+			line = linecache.getline(f"{files['file7path']}", po)
 			if not line:
 				break
 			#find
@@ -440,7 +235,7 @@ def fuse():
 			if(lin>-1):
 				final=po		
 		while  True:
-			line = linecache.getline(f'{file7path}', final)
+			line = linecache.getline(f"{files['file7path']}", final)
 			if not line:
 				break
 			f.write(f"{line}")
@@ -450,10 +245,12 @@ def fuse():
 		print("no file 7 chosen")
 
 	f.close()
+	print("END FUSING FILE")
+
+#FUSE- END SEQUENCE - END#####
+
 
 ##### 2 FUNCTIONS END #####	
-
-
 
 
 ##### 3 ROOT START #####
@@ -466,16 +263,10 @@ root.resizable(False, False)
 
 ##### 4 INTERNAL VARIABLES START #####
 
-en1start = tk.StringVar()
-en1end = tk.StringVar()
-en2start = tk.StringVar()
-en2end = tk.StringVar()
-en3start = tk.StringVar()
-en3end = tk.StringVar()
-en4start = tk.StringVar()
-en4end = tk.StringVar()
-en5start = tk.StringVar()
-en5end = tk.StringVar()
+vars= {}
+for i in range(1,6):
+	vars[f'en{i}start']=tk.IntVar()
+	vars[f'en{i}end']=tk.IntVar()
 
 checkbtn = tk.IntVar()
 
@@ -497,12 +288,6 @@ tabs.pack(expand=1, fill='both')
 
 
 ##### 6 BUTTONS START #####
-#---connect---
-#---go to line---
-#btn6=ttk.Button(tab1, text="go to line", command=go) #dziala jako ttk
-#btn6.place(x=30, y=30)
-#btn1.grid(column=0, row=5, sticky=tk.W)
-#command=lambda: [browsefile()") ]
 
 #---select file---
 btn1=ttk.Button(tab1, text="select file", command=lambda: [Button(file=1)]) #dziala jako ttk
@@ -602,50 +387,30 @@ cbtn.place(x=10, y=120)
 
 ##### 12 ENTRY START #####
 
+for i in range(1,6): #1-5
+	widgets[f'ent{i}s']=ttk.Entry(tab1, width="4", textvariable=vars[f'en{i}start'])
+	widgets[f'ent{i}e']=ttk.Entry(tab1, width="4", textvariable=vars[f'en{i}end'])
 
-ent1s=ttk.Entry(tab1, width="4", textvariable=en1start)
-ent1s.place(x=110, y=60)
-ent1e=ttk.Entry(tab1, width="4", textvariable=en1end)
-ent1e.place(x=210, y=60)
-
-ent2s=ttk.Entry(tab1, width="4", textvariable=en2start)
-ent2s.place(x=110, y=110)
-ent2e=ttk.Entry(tab1, width="4", textvariable=en2end)
-ent2e.place(x=210, y=110)
-
-ent3s=ttk.Entry(tab1, width="4", textvariable=en3start)
-ent3s.place(x=110, y=160)
-ent3e=ttk.Entry(tab1, width="4", textvariable=en3end)
-ent3e.place(x=210, y=160)
-
-ent4s=ttk.Entry(tab1, width="4", textvariable=en4start)
-ent4s.place(x=110, y=210)
-ent4e=ttk.Entry(tab1, width="4", textvariable=en4end)
-ent4e.place(x=210, y=210)
-
-ent5s=ttk.Entry(tab1, width="4", textvariable=en5start)
-ent5s.place(x=110, y=260)
-ent5e=ttk.Entry(tab1, width="4", textvariable=en5end)
-ent5e.place(x=210, y=260)
+widgets['ent1s'].place(x=110, y=60)
+widgets['ent1e'].place(x=210, y=60)
+widgets['ent2s'].place(x=110, y=110)
+widgets['ent2e'].place(x=210, y=110)
+widgets['ent3s'].place(x=110, y=160)
+widgets['ent3e'].place(x=210, y=160)
+widgets['ent4s'].place(x=110, y=210)
+widgets['ent4e'].place(x=210, y=210)
+widgets['ent5s'].place(x=110, y=260)
+widgets['ent5e'].place(x=210, y=260)
 
 ##### 12 ENTRY END #####
 
 
 ##### DISABLED FEATURES START #####
-ent1s['state']='disabled'
-ent1e['state']='disabled'
 
-ent2s['state']='disabled'
-ent2e['state']='disabled'
+for i in range(1,6): #1-5
+	widgets[f'ent{i}s']['state']='disabled'
+	widgets[f'ent{i}e']['state']='disabled'
 
-ent3s['state']='disabled'
-ent3e['state']='disabled'
-
-ent4s['state']='disabled'
-ent4e['state']='disabled'
-
-ent5s['state']='disabled'
-ent5e['state']='disabled'
 ##### DISABLED FEATURES END #####
 
 root.mainloop()
