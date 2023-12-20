@@ -19,3 +19,19 @@ How to use in Windows (cmd) :
 
      $ cd directory
      $ python ./fuser
+
+Android (termux):
+
+    $pkg upgrade
+    $pkg install tigervnc, xfce4, python, python-      tkinter, vim
+ 
+  install RVNC viewer app
+
+    $vncserver
+    $vim ./.vnc
+    -> xsratrtup, add line  -> xfce4-session &   
+    $vncserver :1
+
+  open RVNC viewer and connect 126.0.0.1:5901
+
+    
