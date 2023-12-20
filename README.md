@@ -23,7 +23,7 @@ How to use in Windows (cmd) :
 Android (termux):
 
     $pkg upgrade
-    $pkg install tigervnc, xfce4, python, python-      tkinter, vim
+    $pkg install tigervnc, xfce4, python, python-tkinter, vim
  
   install RVNC viewer app
 
